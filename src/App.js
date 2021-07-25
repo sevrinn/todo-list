@@ -95,18 +95,31 @@ function App() {
           <button>Add Todo</button>
         </div>
       </form>
+
+      <hr />
+
+      
+        
+      
       {/* 
       // - - - - - - R E A D - - - - - - //
       when we map through the todoList in curlybraces, it prints to page immediatly
       1. map through the todoList, for each todo, index pair
       2. create this todo item module that includes, todo, a checkbox to mark as complete, and an button to delete
        */}
-       { //1.
-         todoList.map((todo, index) => (
+        {/* //1. */}
+        {todoList.map((todo, index) => {
+          let todoClasses = [];
+
+            if (todo.complete) {
+            todoClasses.push("cross-out");
+            }
+          return (
+            
            //2.
            <div key={index}>
             <div style={{display: "flex", alignItems: "center", justifyContent: "center"}}>
-            <p>{todo.todo}</p>
+            <p className={todoClasses.join(" ")}>{todo.todo}</p>
              <input 
               type="checkbox"
               onChange={(event)=> {
@@ -117,8 +130,9 @@ function App() {
             {/* index of the corresponding todo is sent to handleRemoveTodo  */}
             <button onClick={()=>handleRemoveTodo(index)}>Remove Todo</button>
            </div>
-         ))
-       }
+          );
+          
+         })}
     </div>
   );
 }
