@@ -37,28 +37,26 @@ function App() {
   }
 
   // - - - - - - U P D A T E - - - - - - //
-  //1. handleToggleComplete gets index of checkbox we clicked on
-  //2. create new updatedTodoList mapping through todolist
-  //3. if index kicked on matches index todoList being mapped,
-    //4. creat updatedTodo using shallow copy of the rest of todo, and the opposite of what todo.complete is
+  //1. handleToggleComplete gets todo of checkbox we clicked on
+  //2. maps through todoList state
+  //3. if item.todo clicked on matches todo.todo being mapped,
+    //4. creat updatedTodo using shallow copy of the rest of todo, and the opposite of what item.complete is
     //5. return updatedTodo
-  //6. return todo
+  //6. return item
   //7. setTodoList with updatedTodoList
 
   //1.
-  const handleToggleComplete = (index) => {
-    //2.
-    const updatedTodoList = todoList.map((todo, idx) => {
-      //3.
-      if (index === idx) {
+  const handleToggleComplete = (todo) => {
+    const updatedTodoList = todoList.map((item, idx) => {
+      if(item.todo === todo.todo) {
         //4.
-        const updatedTodo = { ...todo, complete: !todo.complete }
-        //5.
+        const updatedTodo = { ...item, complete: !item.complete }
         return updatedTodo;
       }
-      //6.
-      return todo;
-    });
+      return item;
+    })
+     console.log(updatedTodoList); 
+  
     //7.
     setTodoList(updatedTodoList);
   }
@@ -71,7 +69,7 @@ function App() {
       //effectively removing clicked on todo
     const handleRemoveTodo = (index) => {
       //1.
-      const filteredTodoList = todoList.filter((_todo, idx) => idx !== index);
+      const filteredTodoList = todoList.filter((todo, idx) => idx !== index);
       //2.
       setTodoList(filteredTodoList);
     }
@@ -97,10 +95,12 @@ function App() {
       3. if todo is complete, add cross-out (a pre styled class) to our p tag
       4. create this todo item module that includes, todo, a checkbox to mark as complete, and an button to delete
        */}
-        {/* //1. */}
+        
       {
+        //1.
         todoList.map((todo, index) => {
           return(
+            //steps 2-4 happen INSIDE the todo component
             <Todo
        key={index} 
        index={index}

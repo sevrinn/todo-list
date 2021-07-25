@@ -14,8 +14,10 @@ const Todo = (props) => {
       <input 
        type="checkbox"
        onChange={(event)=> {
-         handleToggleComplete(index)
+         handleToggleComplete(todo, index)
+        
        }}
+       checked = {todo.complete ? true : false}
      />
      </div>
      {/* index of the corresponding todo is sent to handleRemoveTodo  */}
