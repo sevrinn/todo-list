@@ -105,13 +105,15 @@ function App() {
          todoList.map((todo, index) => (
            //2.
            <div key={index}>
-             <p>{todo.todo}</p>
+            <div style={{display: "flex", alignItems: "center", justifyContent: "center"}}>
+            <p>{todo.todo}</p>
              <input 
               type="checkbox"
               onChange={(event)=> {
                 handleToggleComplete(index)
               }}
             />
+            </div>
             {/* index of the corresponding todo is sent to handleRemoveTodo  */}
             <button onClick={()=>handleRemoveTodo(index)}>Remove Todo</button>
            </div>
