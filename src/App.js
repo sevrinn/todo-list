@@ -55,6 +55,24 @@ function App() {
           <button>Add Todo</button>
         </div>
       </form>
+      {/* 
+      // - - - - - - R E A D - - - - - - //
+      when we map through the todoList in curlybraces, it prints to page immediatly
+      1. map through the todoList, for each todo, index pair
+      2. create this todo item module that includes, todo, a checkbox to mark as complete, and an button to delete
+       */}
+       { //1.
+         todoList.map((todo, index) => (
+           //2.
+           <div key={index}>
+             <p>{todo.todo}</p>
+             <input 
+              type="checkbox"
+            />
+            <button>Remove Todo</button>
+           </div>
+         ))
+       }
     </div>
   );
 }
