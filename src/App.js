@@ -33,6 +33,18 @@ function App() {
     //5.
     setTodo("")
   }
+  // - - - - - - D E L E T E - - - - - - //
+  //called when delete button is clicked, handleRemoveTodo
+  //1.filters through todoList, returning new array that includes every 
+      //idx except the index we clicked on
+  //2. sets todoList to equal the filtered list, 
+      //effectively removing clicked on todo
+    const handleRemoveTodo = (index) => {
+      //1.
+      const filteredTodoList = todoList.filter((_todo, idx) => idx !== index);
+      //2.
+      setTodoList(filteredTodoList);
+    }
 
   return (
     <div className="App">
@@ -69,7 +81,8 @@ function App() {
              <input 
               type="checkbox"
             />
-            <button>Remove Todo</button>
+            {/* index of the corresponding todo is sent to handleRemoveTodo  */}
+            <button onClick={()=>handleRemoveTodo(index)}>Remove Todo</button>
            </div>
          ))
        }
