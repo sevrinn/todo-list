@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import './App.css';
+import Todo from './components/Todo.js';
 
 function App() {
   //initializes state of todo with an empty string
@@ -111,29 +112,16 @@ function App() {
        */}
         {/* //1. */}
         {todoList.map((todo, index) => {
-          //2.
-          let todoClasses = [];
-            //3.
-            if (todo.complete) {
-            todoClasses.push("cross-out");
-            }
-          return (
-           //4.
-           <div key={index}>
-            <div style={{display: "flex", alignItems: "center", justifyContent: "center"}}>
-            <p className={todoClasses.join(" ")}>{todo.todo}</p>
-             <input 
-              type="checkbox"
-              onChange={(event)=> {
-                handleToggleComplete(index)
-              }}
-            />
-            </div>
-            {/* index of the corresponding todo is sent to handleRemoveTodo  */}
-            <button onClick={()=>handleRemoveTodo(index)}>Remove Todo</button>
-           </div>
-          );
           
+          
+          return <Todo
+                    key={index} 
+                    index={index}
+                    todo={todo} 
+                    handleToggleComplete={handleToggleComplete}  
+                    handleRemoveTodo={handleRemoveTodo}
+                      
+                    />
          })}
     </div>
   );
