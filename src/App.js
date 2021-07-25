@@ -33,6 +33,34 @@ function App() {
     //5.
     setTodo("")
   }
+
+  // - - - - - - U P D A T E - - - - - - //
+  //1. handleToggleComplete gets index of checkbox we clicked on
+  //2. create new updatedTodoList mapping through todolist
+  //3. if index kicked on matches index todoList being mapped,
+    //4. creat updatedTodo using shallow copy of the rest of todo, and the opposite of what todo.complete is
+    //5. return updatedTodo
+  //6. return todo
+  //7. setTodoList with updatedTodoList
+
+  //1.
+  const handleToggleComplete = (index) => {
+    //2.
+    const updatedTodoList = todoList.map((todo, idx) => {
+      //3.
+      if (index === idx) {
+        //4.
+        const updatedTodo = { ...todo, complete: !todo.complete }
+        //5.
+        return updatedTodo;
+      }
+      //6.
+      return todo;
+    });
+    //7.
+    setTodoList(updatedTodoList);
+  }
+
   // - - - - - - D E L E T E - - - - - - //
   //called when delete button is clicked, handleRemoveTodo
   //1.filters through todoList, returning new array that includes every 
@@ -80,6 +108,9 @@ function App() {
              <p>{todo.todo}</p>
              <input 
               type="checkbox"
+              onChange={(event)=> {
+                handleToggleComplete(index)
+              }}
             />
             {/* index of the corresponding todo is sent to handleRemoveTodo  */}
             <button onClick={()=>handleRemoveTodo(index)}>Remove Todo</button>
