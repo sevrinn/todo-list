@@ -20,7 +20,9 @@ const Todo = (props) => {
      </div>
      {/* index of the corresponding todo is sent to handleRemoveTodo  */}
      <button onClick={()=>handleRemoveTodo(index)}>Remove Todo</button>
+     <hr />
     </div>
+    
    );
 }
 

@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import './App.css';
-import Todo from './components/Todo.js';
+import Todo from './components/Todo';
+import Form from './components/Form';
 
 function App() {
   //initializes state of todo with an empty string
@@ -77,26 +78,12 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Single Component Todo List</h1>
+      <h1>Multiple Component Todo List</h1>
       <p>Add a todo:</p>
-      {/* When fomr is submited, the anonymous callback
+      {/* When form is submitted, the anonymous callback
       takes the event and passes it to the handleAddtodo function above */}
-      <form onSubmit={(e)=>handleAddTodo(e) }>
-        {/* -when input changes, it takes in the event and updates todo
-          to equal whats in the input box.
-            -value is set equal to todo so that it clears out everytime form is submitted
-           */}
-        <input 
-          type="text" 
-          name="todo" 
-          onChange={(e)=>setTodo(e.target.value)}
-          value={todo}
-        />
-        <div>
-          <button>Add Todo</button>
-        </div>
-      </form>
-
+      <Form todo= {todo} setTodo={setTodo} handleAddTodo={handleAddTodo}/>
+      
       <hr />
 
       
@@ -111,20 +98,21 @@ function App() {
       4. create this todo item module that includes, todo, a checkbox to mark as complete, and an button to delete
        */}
         {/* //1. */}
-        {todoList.map((todo, index) => {
-          
-          
-          return <Todo
-                    key={index} 
-                    index={index}
-                    todo={todo} 
-                    handleToggleComplete={handleToggleComplete}  
-                    handleRemoveTodo={handleRemoveTodo}
-                      
-                    />
-         })}
+      {
+        todoList.map((todo, index) => {
+          return(
+            <Todo
+       key={index} 
+       index={index}
+       todo={todo} 
+       handleToggleComplete={handleToggleComplete}  
+       handleRemoveTodo={handleRemoveTodo}
+     />
+    );
+  })}  
+    
+ 
     </div>
   );
 }
-
 export default App;
